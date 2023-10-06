@@ -1,0 +1,15 @@
+node_modules
+.cache
+.vercel
+.output
+build
+public/build
+api/*
+.env
+.env.*
+test-results/
+playwright-report/
+.eslintcache
+
+!.env.sample
+!.env.*.sample
