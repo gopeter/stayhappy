@@ -12,10 +12,10 @@ The app is based on the Remix template [`remix-prisma-starter`](https://github.c
 
 ### Quickstart
 
-- Make sure to have `pnpm` and a Postgresql installed
+- Make sure to have Postgresql installed
 - `cp .env.sample .env` and enter the right database credentials
-- Run migrations with `pnpm dlx prisma migrate dev`
-- Start with `pnpm run dev`
+- Run migrations with `npx prisma migrate dev`
+- Start with `npm run dev`
 
 ### Testing
 
