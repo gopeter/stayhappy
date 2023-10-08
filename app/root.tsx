@@ -156,7 +156,7 @@ function Document({
           <Meta />
           <Links />
         </head>
-        <body className={location.pathname === "/" ? "dark" : ""}>
+        <body className={location.pathname === "/" ? "dark landingpage" : ""}>
           {children}
           <ScrollRestoration />
           <Scripts />
