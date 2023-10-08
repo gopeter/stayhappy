@@ -19,7 +19,7 @@
     "ts-check": "tsc --project tsconfig.json --noEmit --skipLibCheck",
     "ts-run": "dotenv ts-node",
     "validate-env": "npm run ts-run tasks/validateConfig.ts",
-    "vercel-build": "npx prisma generate && npx prisma migrate deploy && npm run build"
+    "vercel-build": "prisma generate && prisma migrate deploy && remix build"
   },
   "lint-staged": {
     "*.{js,ts,jsx,tsx}": "eslint --cache --fix"
