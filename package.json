@@ -19,7 +19,7 @@
     "ts-check": "tsc --project tsconfig.json --noEmit --skipLibCheck",
     "ts-run": "dotenv ts-node",
     "validate-env": "pnpm run ts-run tasks/validateConfig.ts",
-    "vercel-build": "deploy"
+    "vercel-build": "pnpm run deploy"
   },
   "lint-staged": {
     "*.{js,ts,jsx,tsx}": "eslint --cache --fix"
