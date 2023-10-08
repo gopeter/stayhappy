@@ -19,7 +19,7 @@ async function main({ rootDirectory }) {
     `
 NODE_ENV=development
 DATABASE_PRISMA_URL=${answers.databaseUrl}
-DATABASE_URL_NON_POOLING=${answers.databaseUrl}
+DATABASE_PRISMA_URL_NON_POOLING=${answers.databaseUrl}
 SECRET_KEY_BASE=${generateSecretKeyBase()}
 SECURE_AUTH_COOKIE=false
   `,
@@ -30,7 +30,7 @@ SECURE_AUTH_COOKIE=false
     `
 NODE_ENV=production
 DATABASE_PRISMA_URL=${answers.testDatabaseUrl}
-DATABASE_URL_NON_POOLING=${answers.testDatabaseUrl}
+DATABASE_PRISMA_URL_NON_POOLING=${answers.testDatabaseUrl}
 SECRET_KEY_BASE=${generateSecretKeyBase()}
 SECURE_AUTH_COOKIE=false
 PORT=3001
