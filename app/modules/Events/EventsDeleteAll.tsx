@@ -2,7 +2,7 @@ import { Form } from "@remix-run/react";
 import { Button } from "~/components/ui/button";
 import useIsLoading from "~/hooks/useIsLoading";
 
-export default function NotesDeleteAll() {
+export default function EventsDeleteAll() {
   const isLoading = useIsLoading();
 
   return (
@@ -12,7 +12,7 @@ export default function NotesDeleteAll() {
         type="submit"
         name="_action"
         value="delete-all"
-        aria-label="Delete all notes"
+        aria-label="Delete all events"
         isLoading={isLoading}
       >
         Delete all

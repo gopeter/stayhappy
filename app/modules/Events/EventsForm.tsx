@@ -4,7 +4,7 @@ import { Button } from "~/components/ui/button";
 import { FullInput } from "~/components/ui/full-input";
 import useIsLoading from "~/hooks/useIsLoading";
 
-export default function NotesForm() {
+export default function EventsForm() {
   const navigation = useNavigation();
   const isLoading = useIsLoading();
   const inputRef = useRef<HTMLInputElement>(null);
@@ -23,9 +23,29 @@ export default function NotesForm() {
     <Form method="post" className="flex flex-col space-y-4">
       <div className="flex flex-row items-end space-x-4 w-full">
         <FullInput
-          label="New todo"
+          label="Content"
           name="content"
           type="text"
+          required
+          ref={inputRef}
+          className="w-full"
+          inputClassName="input-bordered"
+        />
+
+        <FullInput
+          label="Start date"
+          name="start"
+          type="date"
+          required
+          ref={inputRef}
+          className="w-full"
+          inputClassName="input-bordered"
+        />
+
+        <FullInput
+          label="End date"
+          name="end"
+          type="date"
           required
           ref={inputRef}
           className="w-full"

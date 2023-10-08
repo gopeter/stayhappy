@@ -5,47 +5,50 @@ import { Card } from "~/components/ui/card";
 import { ScrollArea } from "~/components/ui/scroll-area";
 import useDates from "~/hooks/useDates";
 import useIsLoading from "~/hooks/useIsLoading";
-import { NotesRouteData } from "~/routes/__authed.notes";
+import { EventsRouteData } from "~/routes/__authed.events";
 import { cn } from "~/utils";
 
-export default function NotesList() {
-  const { notes } = useLoaderData<NotesRouteData>();
+export default function EventsList() {
+  const { events } = useLoaderData<EventsRouteData>();
   const { formatRelativeTime } = useDates();
-  const previousNotesLength = usePrevious<number>(notes.length);
-  const notesContainerRef = useRef<HTMLDivElement>(null);
+  const previousEventsLength = usePrevious<number>(events.length);
+  const eventsContainerRef = useRef<HTMLDivElement>(null);
   const isLoading = useIsLoading();
 
-  // Scroll the notes to bottom if a new one comes in
+  // Scroll the events to bottom if a new one comes in
   useEffect(() => {
-    if (notes.length > (previousNotesLength || 0)) {
-      if (!notesContainerRef.current) return;
+    if (events.length > (previousEventsLength || 0)) {
+      if (!eventsContainerRef.current) return;
 
-      const scrollingContainer = notesContainerRef.current.querySelector("div");
+      const scrollingContainer =
+        eventsContainerRef.current.querySelector("div");
 
       if (!scrollingContainer) return;
 
       scrollingContainer.scrollTop = scrollingContainer.scrollHeight;
     }
-  }, [notes.length, previousNotesLength]);
+  }, [events.length, previousEventsLength]);
 
-  if (notes.length === 0)
+  if (events.length === 0)
     return (
       <div className="h-full flex flex-col justify-center items-center">
-        <p className="text-center">You have no notes! Please write some.</p>
+        <p className="text-center">You have no events! Please write some.</p>
       </div>
     );
 
   return (
-    <ScrollArea className="max-h-full h-full" ref={notesContainerRef}>
+    <ScrollArea className="max-h-full h-full" ref={eventsContainerRef}>
       <ul className="space-y-6 flex flex-col">
-        {notes.map((note) => (
-          <li key={note.id}>
+        {events.map((event) => (
+          <li key={event.id}>
             <Card className="p-4 flex flex-row justify-between">
               <div className="flex flex-col space-y-6">
-                <p>{note.content}</p>
+                <p>{event.content}</p>
+                <p>Start: {event.start}</p>
+                <p>End: {event.end}</p>
 
                 <p className="text-xs opacity-75">
-                  Created {formatRelativeTime(note.createdAt)} ago
+                  Created {formatRelativeTime(event.createdAt)} ago
                 </p>
               </div>
 
@@ -53,7 +56,7 @@ export default function NotesList() {
                 method="post"
                 className="flex flex-col items-center justify-center"
               >
-                <input name="id" readOnly value={note.id} className="hidden" />
+                <input name="id" readOnly value={event.id} className="hidden" />
                 <button
                   type="submit"
                   className={cn("link", {
@@ -62,7 +65,7 @@ export default function NotesList() {
                   disabled={isLoading}
                   name="_action"
                   value="delete"
-                  aria-label="Delete note"
+                  aria-label="Delete event"
                 >
                   X
                 </button>

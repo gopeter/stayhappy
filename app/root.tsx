@@ -4,6 +4,7 @@ import {
   Meta,
   Outlet,
   Scripts,
+  useLocation,
   ScrollRestoration,
   isRouteErrorResponse,
   useLoaderData,
@@ -23,7 +24,7 @@ export function links() {
   return [
     { rel: "stylesheet", href: styles },
     { rel: "preconnect", href: "https://fonts.googleapis.com" },
-    { rel: "preconnect", href: "https://fonts.gstatic.com", crossorigin: true },
+    { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: true },
     {
       rel: "stylesheet",
       href: "https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Work+Sans:wght@400;700&display=swap",
@@ -81,7 +82,9 @@ const applySystemThemeString = `
 `;
 
 export default function App() {
-  const { ENV, currentTheme } = useLoaderData<RootLoaderType>();
+  const { ENV, currentTheme, ...props } = useLoaderData<RootLoaderType>();
+
+  console.log(props);
 
   useEffect(() => {
     if (currentTheme === "system") applySystemTheme();
@@ -138,6 +141,8 @@ function Document({
   title?: string;
   className?: string;
 }) {
+  const location = useLocation();
+
   return (
     <React.StrictMode>
       <html
@@ -151,7 +156,7 @@ function Document({
           <Meta />
           <Links />
         </head>
-        <body>
+        <body className={location.pathname === "/" ? "dark" : ""}>
           {children}
           <ScrollRestoration />
           <Scripts />

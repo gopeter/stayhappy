@@ -1,6 +1,6 @@
 export default function Index() {
   return (
-    <div className="text-white p-10 max-w-prose bg-clip-text text-transparent bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-pink-300 via-purple-300 to-indigo-400 min-h-screen">
+    <div className="text-white p-10 max-w-prose bg-clip-text text-transparent bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-pink-300 via-purple-300 to-indigo-400 min-h-screen landingpage">
       <h1 className="mb-8 text-transparent">Fuck depression</h1>
       <p>
         <strong>Never give up. Your brain is just tricking you.</strong> Even on

@@ -13,7 +13,7 @@ test("signs up", async ({ page, screen }) => {
   await screen.getByLabelText("Confirm password").fill(PASSWORD);
   await screen.getByText("Sign up").click();
 
-  await page.waitForURL("/notes");
+  await page.waitForURL("/events");
 });
 
 test("logins", async ({ page, screen }) => {
@@ -22,7 +22,7 @@ test("logins", async ({ page, screen }) => {
   await screen.getByLabelText("Password").fill(PASSWORD);
   await screen.getByText("Login").click();
 
-  await page.waitForURL("/notes");
+  await page.waitForURL("/events");
 });
 
 test("shows login and then redirects to original page", async ({
