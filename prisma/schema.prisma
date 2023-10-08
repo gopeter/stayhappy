@@ -4,14 +4,15 @@ generator client {
 
 datasource db {
   provider = "postgres"
-  url = env("DATABASE_PRISMA_URL") // uses connection pooling
-  directUrl = env("DATABASE_PRISMA_URL_NON_POOLING") // uses a direct connection
-  shadowDatabaseUrl = env("DATABASE_PRISMA_URL_NON_POOLING") // used for migrations
+  url = env("DATABASE_PRISMA_URL")
+  directUrl = env("DATABASE_PRISMA_URL_NON_POOLING")
 }
 
-model Note {
+model Event {
   id        String   @id @default(uuid())
   content   String
+  start     DateTime
+  end       DateTime
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   userId    String
@@ -26,5 +27,5 @@ model User {
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
   featureFlags Json     @default("{}")
-  Note         Note[]
+  Event        Event[]
 }

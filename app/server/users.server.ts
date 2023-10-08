@@ -108,7 +108,7 @@ export async function updateUser(
 
 export async function deleteUser(user: User): Promise<Omit<User, "password">> {
   const [_, deletedUser] = await prisma.$transaction([
-    prisma.note.deleteMany({ where: { userId: user.id } }),
+    prisma.event.deleteMany({ where: { userId: user.id } }),
     prisma.user.delete({ where: { id: user.id } }),
   ]);
 

@@ -12,7 +12,7 @@ import { Card, CardTitle } from "~/components/ui/card";
 export const loader = async ({ request }: DataFunctionArgs) => {
   const user = await userFromRequest(request);
 
-  if (user) return redirect("/notes");
+  if (user) return redirect("/events");
 
   return null;
 };
