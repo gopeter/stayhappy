@@ -6,20 +6,20 @@
   "sideEffects": false,
   "scripts": {
     "build": "remix build",
-    "ci": "pnpm run lint && pnpm run ts-check && npx playwright install && pnpm run test",
+    "ci": "npm run lint && npm run ts-check && npx playwright install && npm run test",
     "clean": "rm -rf .eslintcache playwright-report build public/build .cache node_modules",
-    "deploy": "pnpm run ts-run tasks/validateConfig.ts && prisma generate && prisma db push && pnpm run build",
+    "deploy": "npm run ts-run tasks/validateConfig.ts && prisma generate && prisma db push && npm run build",
     "dev": "remix dev",
     "postinstall": "remix setup node",
     "lint": "eslint \"**/*.{js,jsx,ts,tsx}\" --cache",
     "prepare": "husky install",
     "start": "remix-serve build/index.js",
-    "test": "dotenv -e .env.test -- bash -c 'prisma db push -- --force && pnpm run build && playwright test'",
-    "test:ci": "prisma db push && pnpm run build && playwright test",
+    "test": "dotenv -e .env.test -- bash -c 'prisma db push -- --force && npm run build && playwright test'",
+    "test:ci": "prisma db push && npm run build && playwright test",
     "ts-check": "tsc --project tsconfig.json --noEmit --skipLibCheck",
     "ts-run": "dotenv ts-node",
-    "validate-env": "pnpm run ts-run tasks/validateConfig.ts",
-    "vercel-build": "prisma generate && prisma db push && pnpm run build"
+    "validate-env": "npm run ts-run tasks/validateConfig.ts",
+    "vercel-build": "npx prisma generate && npx prisma migrate deploy && npm run build"
   },
   "lint-staged": {
     "*.{js,ts,jsx,tsx}": "eslint --cache --fix"
