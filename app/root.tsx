@@ -20,7 +20,15 @@ import { getCurrentTheme } from "./server/theme.server";
 import { cn } from "./utils";
 
 export function links() {
-  return [{ rel: "stylesheet", href: styles }];
+  return [
+    { rel: "stylesheet", href: styles },
+    { rel: "preconnect", href: "https://fonts.googleapis.com" },
+    { rel: "preconnect", href: "https://fonts.gstatic.com", crossorigin: true },
+    {
+      rel: "stylesheet",
+      href: "https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Work+Sans:wght@400;700&display=swap",
+    },
+  ];
 }
 
 // Load the locale from the Accept-Language header to later

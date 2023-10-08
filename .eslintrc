@@ -56,6 +56,7 @@
     "react/boolean-prop-naming": "error",
     "react/react-in-jsx-scope": "off",
     "react/button-has-type": "error",
+    "react/no-unescaped-entities": "off",
     "react/jsx-no-target-blank": [
       "error",
       {

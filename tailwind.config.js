@@ -1,5 +1,8 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  experimental: {
+    applyComplexClasses: true,
+  },
   darkMode: ["class"],
   content: ["./app/**/*.{html,js,jsx,ts,tsx}"],
   theme: {
@@ -11,6 +14,10 @@ module.exports = {
       },
     },
     extend: {
+      fontFamily: {
+        "libre-baskerville": ["Libre Baskerville", "serif"],
+        "work-sans": ["Work Sans", "sans-serif"],
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
