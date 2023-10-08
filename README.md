@@ -1,18 +1,6 @@
-# Fuck depression, stay happy
+# Fuck depression
 
 Never give up. Your brain is just fucking with you. Even on the darkest days, there is something to look forward to. The new album of your favorite band. Snow. The birthday of a good friend. A few days off when the kids are with grandma and grandpa. Eggnog at Christmas. You get the idea.
-
-Your brain forgets all the good stuff, though.
-
-So let yourself remember those good things. It doesn't matter if it's tomorrow or a few months from now. There's so much to look forward to.
-
-[stayhappy.app](https://stayhappy.app) was built to help you focus on these things. We distinguish between the following three areas:
-
-- Gratefulness: all the things, no matter small or big, you're grateful for each day. Your child's cold feet when they crawl under your covers in the morning. The coffee from your portafilter. The scent of your favorite perfume that will always remind you of that one vacation.
-- Memories: some things that have happened in your life that always bring a smile to your face. Your wedding. The day you purchased your motor cycle. Your graduation.
-- Events: the next BBQ at your best friend's house. The upcoming ski vacation. Das PlayStation-Spiel, auf das du die letzten Monate gewartet hast.
-
-Whenever you need a smile, just look up what you've experienced and achieved in your life. And what's coming next, because, you know, there is *always* something to look forward to.
 
 ## Status
 

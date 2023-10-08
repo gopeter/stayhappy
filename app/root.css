@@ -70,7 +70,44 @@
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground;
+    @apply font-work-sans;
+  }
+
+  h1 {
+    @apply text-4xl sm:text-6xl;
+    @apply font-bold;
+    @apply font-libre-baskerville;
+  }
+
+  h2 {
+    @apply text-xl;
+  }
+
+  h3 {
+    @apply text-lg;
+  }
+
+  a {
+    @apply text-blue-600 underline;
+  }
+
+  p {
+    @apply mb-4;
+  }
+
+  ul {
+    li {
+      @apply mb-4;
+      @apply ml-6;
+
+      &:before {
+        content: '\2014';
+        position: absolute;
+        margin-left: calc(-1 * theme('spacing.6'));
+      }
+    }
   }
 }
