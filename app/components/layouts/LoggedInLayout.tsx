@@ -2,7 +2,7 @@ import { Form, NavLink } from "@remix-run/react";
 import { ReactNode } from "react";
 import useFeatureFlags from "~/hooks/useFeatureFlags";
 import { UserProvider } from "~/hooks/useUser";
-import { AuthedRouteData } from "~/routes/__authed";
+import { AuthedRouteData } from "~/routes/_authed";
 import { Button } from "../ui/button";
 import ThemeChanger from "../ThemeChanger";
 

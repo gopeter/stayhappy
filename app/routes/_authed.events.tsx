@@ -29,8 +29,6 @@ export const action: ActionFunction = async ({ request }) => {
   const userId = await userIdFromRequest(request);
   const form = Object.fromEntries(await request.formData());
 
-  console.log(form);
-
   switch (form._action) {
     case "create":
       await createEvent(userId, {

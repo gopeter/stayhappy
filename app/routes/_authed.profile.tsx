@@ -1,4 +1,4 @@
-import { Form, useActionData } from "@remix-run/react";
+import { Form, useActionData, useLoaderData } from "@remix-run/react";
 import type {
   DataFunctionArgs,
   SerializeFrom,
@@ -11,10 +11,17 @@ import { updateUser } from "~/server/users.server";
 import useIsLoading from "~/hooks/useIsLoading";
 import useToast from "~/hooks/useToast";
 import useUser from "~/hooks/useUser";
-import { userIdFromRequest } from "~/server/auth.server";
+import { userIdFromRequest, userJwt } from "~/server/auth.server";
 import { Card, CardTitle } from "~/components/ui/card";
 
 export type ProfileRouteActionType = SerializeFrom<typeof action>;
+
+export const loader = async ({ request }: DataFunctionArgs) => {
+  const userId = await userIdFromRequest(request);
+  const jwt = await userJwt(userId);
+
+  return { jwt };
+};
 
 export const action = async ({ request }: DataFunctionArgs) => {
   const userId = await userIdFromRequest(request);
@@ -37,6 +44,7 @@ export default function Profile() {
   const actionData = useActionData<ProfileRouteActionType>();
   const { toast } = useToast();
   const isLoading = useIsLoading();
+  const { jwt } = useLoaderData();
 
   useEffect(() => {
     if (actionData?.errors) toast("Failed to update profile!", "error");
@@ -47,6 +55,14 @@ export default function Profile() {
     <Card className="max-w-lg w-full mx-auto flex items-center justify-center">
       <Form method="post" className="p-10 w-full flex flex-col space-y-4">
         <CardTitle className="mb-8">Edit your profile</CardTitle>
+
+        <FullInput
+          label="JWT"
+          name="jwt"
+          type="text"
+          disabled
+          defaultValue={jwt}
+        />
 
         <FullInput
           label="Email"
