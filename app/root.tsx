@@ -82,9 +82,7 @@ const applySystemThemeString = `
 `;
 
 export default function App() {
-  const { ENV, currentTheme, ...props } = useLoaderData<RootLoaderType>();
-
-  console.log(props);
+  const { ENV, currentTheme } = useLoaderData<RootLoaderType>();
 
   useEffect(() => {
     if (currentTheme === "system") applySystemTheme();

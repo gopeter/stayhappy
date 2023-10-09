@@ -5,7 +5,7 @@ import { Card } from "~/components/ui/card";
 import { ScrollArea } from "~/components/ui/scroll-area";
 import useDates from "~/hooks/useDates";
 import useIsLoading from "~/hooks/useIsLoading";
-import { EventsRouteData } from "~/routes/__authed.events";
+import { EventsRouteData } from "~/routes/_authed.events";
 import { cn } from "~/utils";
 
 export default function EventsList() {

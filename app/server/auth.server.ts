@@ -1,4 +1,5 @@
 import { createCookie, redirect } from "@vercel/remix";
+import jwt from "jsonwebtoken";
 import prisma from "~/server/utils/prisma.server";
 import { SERVER_ENV } from "~/env.server";
 
@@ -39,6 +40,13 @@ export async function userIdFromRequest(request: Request) {
   return userId;
 }
 
+export function userIdFromJwt(request: Request): jwt.JwtPayload {
+  const authHeader = request.headers.get("Authentication");
+  if (!authHeader) return {};
+
+  return (jwt.decode(authHeader) as jwt.JwtPayload) || {};
+}
+
 export async function userFromRequest(request: Request) {
   const userId = await userIdFromRequest(request);
 
@@ -57,4 +65,10 @@ export async function userFromRequest(request: Request) {
   });
 
   return user;
+}
+
+export async function userJwt(userId: string) {
+  return jwt.sign({ id: userId }, SERVER_ENV.SECRET_KEY_BASE, {
+    noTimestamp: true,
+  });
 }
