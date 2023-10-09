@@ -14,7 +14,7 @@ function createWidget(data) {
   const w = new ListWidget();
   const bgColor = new LinearGradient();
 
-  bgColor.colors = [new Color("#29323c"), new Color("#1c1c1c")];
+  bgColor.colors = [new Color("#132653"), new Color("#020817")];
   bgColor.locations = [0.0, 1.0];
 
   w.backgroundGradient = bgColor;
@@ -27,8 +27,7 @@ function createWidget(data) {
     const formattedStart = new DateFormatter();
     formattedStart.dateFormat = "EEEE, d MMM YY";
     const dateText = w.addText(formattedStart.string(new Date(event.start)));
-    dateText.textColor = Color.white();
-    dateText.textOpacity = 0.6;
+    dateText.textColor = new Color("#f4aadb");
     dateText.font = Font.boldSystemFont(9);
 
     const contentText = w.addText(event.content);
