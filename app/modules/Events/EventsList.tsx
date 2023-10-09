@@ -44,8 +44,11 @@ export default function EventsList() {
             <Card className="p-4 flex flex-row justify-between">
               <div className="flex flex-col space-y-6">
                 <p>{event.content}</p>
-                <p>Start: {event.start}</p>
-                <p>End: {event.end}</p>
+                <p>
+                  Start: {event.start}
+                  <br />
+                  End: {event.end}
+                </p>
 
                 <p className="text-xs opacity-75">
                   Created {formatRelativeTime(event.createdAt)} ago
