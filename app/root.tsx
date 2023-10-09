@@ -12,6 +12,7 @@ import {
   useRouteError,
 } from "@remix-run/react";
 import { DataFunctionArgs } from "@vercel/remix";
+import { Analytics } from "@vercel/analytics/react";
 import acceptLanguage from "accept-language-parser";
 import React, { useEffect } from "react";
 import { ToastsRenderer } from "./hooks/useToast";
@@ -155,6 +156,8 @@ function Document({
           <Links />
         </head>
         <body className={location.pathname === "/" ? "dark landingpage" : ""}>
+          <Analytics />
+
           {children}
           <ScrollRestoration />
           <Scripts />
