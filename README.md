@@ -8,7 +8,7 @@ Built on top of Remix, Prisma and Postgres, deployed to Vercel. [stayhappy.app](
 
 ## Development
 
-The app is based on the Remix template [`remix-prisma-starter`](https://github.com/jfranciscosousa/remix-prisma-starter). Please check the repo for all details.
+The app is based on the Remix template [`remix-prisma-starter`](https://github.com/jfranciscosousa/remix-prisma-starter). Please check the repository for all details.
 
 ### Quickstart
 
