@@ -64,13 +64,15 @@ function writeEvent(event, stack, isLast) {
 
   formattedStart.dateFormat = "E";
   const weekDayOfFormattedStart = formattedStart
-    .string(new Date(event.start))
+    .string(new Date(event.startAt))
     .slice(0, -1);
 
   formattedStart.dateFormat = "d MMM YY";
-  const fullDateOfFormattedStart = formattedStart.string(new Date(event.start));
+  const fullDateOfFormattedStart = formattedStart.string(
+    new Date(event.startAt),
+  );
 
-  const startDate = new Date(event.start);
+  const startDate = new Date(event.startAt);
   const relativeDateText = relativeDate(startDate);
 
   const dateText = stack.addText(
