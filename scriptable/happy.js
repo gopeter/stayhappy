@@ -5,8 +5,9 @@
 
 const jwt = args.widgetParameter;
 const data = await fetchData(jwt);
-const widget = createWidget(data);
+const widget = await createWidget(data);
 
+if (!config.runsInWidget) widget.presentSmall();
 Script.setWidget(widget);
 Script.complete();
 
@@ -29,7 +30,70 @@ function relativeDate(date) {
   }
 }
 
-function createWidget(data) {
+async function loadImage(imgUrl) {
+  const req = new Request(imgUrl);
+  return await req.loadImage();
+}
+
+async function getImage(image) {
+  let fm = FileManager.local();
+  let dir = fm.documentsDirectory();
+  let path = fm.joinPath(dir, image);
+  if (fm.fileExists(path)) {
+    return fm.readImage(path);
+  } else {
+    // download once
+    let imageUrl;
+    switch (image) {
+      case "coffee":
+        imageUrl =
+          "https://cdn.jsdelivr.net/gh/gopeter/stayhappy/scriptable/coffee.png";
+        break;
+      default:
+        console.log(`FP: Sorry, couldn't find ${image}.`);
+    }
+    let iconImage = await loadImage(imageUrl);
+
+    fm.writeImage(path, iconImage);
+    return iconImage;
+  }
+}
+
+function writeEvent(event, stack, isLast) {
+  const formattedStart = new DateFormatter();
+
+  formattedStart.dateFormat = "E";
+  const weekDayOfFormattedStart = formattedStart
+    .string(new Date(event.start))
+    .slice(0, -1);
+
+  formattedStart.dateFormat = "d MMM YY";
+  const fullDateOfFormattedStart = formattedStart.string(new Date(event.start));
+
+  const startDate = new Date(event.start);
+  const relativeDateText = relativeDate(startDate);
+
+  const dateText = stack.addText(
+    config.widgetFamily === "small"
+      ? relativeDateText
+      : `${relativeDateText} – ${weekDayOfFormattedStart}, ${fullDateOfFormattedStart}`,
+  );
+
+  dateText.textColor = Color.white();
+  dateText.textOpacity = 0.5;
+  dateText.font = Font.heavySystemFont(9);
+
+  stack.addSpacer(2);
+
+  const contentText = stack.addText(event.content);
+  contentText.textColor = Color.white();
+  contentText.textOpacity = 1;
+  contentText.font = Font.mediumSystemFont(12);
+
+  if (!isLast) stack.addSpacer(6);
+}
+
+async function createWidget(data) {
   const w = new ListWidget();
   const bgColor = new LinearGradient();
 
@@ -37,43 +101,56 @@ function createWidget(data) {
   bgColor.locations = [0.0, 1.0];
 
   w.backgroundGradient = bgColor;
-  w.setPadding(6, 12, 6, 12);
-  w.spacing = 2;
+  w.setPadding(20, 14, 20, 14);
+  w.spacing = 0;
 
-  data.events.length = 4;
+  const eventLength = data.events.length;
 
-  data.events.forEach((event, i) => {
-    const formattedStart = new DateFormatter();
-    formattedStart.dateFormat = "EEEE, d MMM YY";
+  let mainStack = w.addStack();
+  mainStack.layoutHorizontally();
 
-    const startDate = new Date(event.start);
-    const relativeDateText = relativeDate(startDate);
+  let leftStack = mainStack.addStack();
+  leftStack.layoutVertically();
 
-    const dateText = w.addText(
-      config.widgetFamily === "small"
-        ? relativeDateText
-        : `${relativeDateText} – ${formattedStart.string(
-            new Date(event.start),
-          )}`,
-    );
+  for (let i = 0; i < 4; i++) {
+    const event = data.events[i];
+    const isLast = i === 3;
+    if (event) writeEvent(event, leftStack, isLast);
+  }
 
-    dateText.textColor = Color.white();
-    dateText.textOpacity = 0.5;
-    dateText.font = Font.heavySystemFont(9);
+  mainStack.addSpacer();
 
-    const contentText = w.addText(event.content);
-    contentText.textColor = Color.white();
-    contentText.textOpacity = 1;
-    contentText.font = Font.mediumSystemFont(12);
+  if (config.widgetFamily !== "small") {
+    let rightStack = mainStack.addStack();
+    rightStack.layoutVertically();
 
-    if (i < data.events.length - 1) w.addSpacer(5);
-  });
+    if (eventLength > 4) {
+      for (let i = 4; i < 8; i++) {
+        const event = data.events[i];
+        const isLast = i === 7;
+        if (event) writeEvent(event, rightStack, isLast);
+      }
+    } else {
+      // TODO: add dynamic memories or things you're grateful for
+      rightStack.setPadding(0, 20, 0, 0);
+      const gratefulText = rightStack.addText(
+        "Die Ruhe am Morgen, während du deinen frisch gebrühten Cappuchino genießt",
+      );
+
+      gratefulText.textColor = Color.white();
+      gratefulText.font = Font.mediumSystemFont(14);
+    }
+  }
+
+  w.addSpacer();
 
   return w;
 }
 
 async function fetchData(auth) {
-  const url = "https://stayhappy.app/api/events";
+  const url = `https://stayhappy.app/api/events?limit=${
+    config.widgetFamily === "small" ? 4 : 8
+  }`;
 
   const request = new Request(url);
   request.headers = { Authentication: auth };
