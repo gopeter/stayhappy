@@ -8,7 +8,7 @@ export async function listEvents(userId: string): Promise<Event[]> {
     where: {
       userId,
     },
-    orderBy: { createdAt: "asc" },
+    orderBy: { startAt: "asc" },
   });
 }
 
@@ -21,12 +21,12 @@ export async function listApiEvents(
   return prisma.event.findMany({
     where: {
       userId,
-      start: {
+      startAt: {
         gte: new Date(),
       },
     },
     take: limit,
-    orderBy: { start: "asc" },
+    orderBy: { startAt: "asc" },
   });
 }
 
@@ -40,7 +40,7 @@ export async function deleteAllEvents(userId: string): Promise<void> {
 
 export async function createEvent(
   userId: string,
-  eventParams: { content: string; start: string; end: string },
+  eventParams: { content: string; startAt: string; endAt: string },
 ) {
   return prisma.event.create({
     data: { ...eventParams, user: { connect: { id: userId } } },

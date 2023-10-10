@@ -8,6 +8,12 @@ export const loader = async ({ request }: DataFunctionArgs) => {
   const jwt = userIdFromJwt(request);
   if (!jwt.id) return {};
 
-  const events = await listApiEvents(jwt.id);
+  const url = new URL(request.url);
+  const limit = url.searchParams.get("limit");
+
+  const events = await listApiEvents(
+    jwt.id,
+    limit ? parseInt(limit, 10) : undefined,
+  );
   return { events };
 };

@@ -11,8 +11,9 @@ datasource db {
 model Event {
   id        String   @id @default(uuid())
   content   String
-  start     DateTime
-  end       DateTime
+  startAt   DateTime
+  endAt     DateTime
+  interval  Unsupported("interval")?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   userId    String
