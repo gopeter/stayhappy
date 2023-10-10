@@ -45,9 +45,9 @@ export default function EventsList() {
               <div className="flex flex-col space-y-6">
                 <p>{event.content}</p>
                 <p>
-                  Start: {event.start}
+                  Start: {event.startAt}
                   <br />
-                  End: {event.end}
+                  End: {event.endAt}
                 </p>
 
                 <p className="text-xs opacity-75">

@@ -33,8 +33,8 @@ export const action: ActionFunction = async ({ request }) => {
     case "create":
       await createEvent(userId, {
         content: form.content as string,
-        start: new Date(form.start as string).toISOString(),
-        end: new Date(form.end as string).toISOString(),
+        startAt: new Date(form.startAt as string).toISOString(),
+        endAt: new Date(form.endAt as string).toISOString(),
       });
       break;
 

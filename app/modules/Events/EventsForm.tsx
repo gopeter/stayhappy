@@ -34,7 +34,7 @@ export default function EventsForm() {
 
         <FullInput
           label="Start date"
-          name="start"
+          name="startAt"
           type="date"
           required
           ref={inputRef}
@@ -44,7 +44,7 @@ export default function EventsForm() {
 
         <FullInput
           label="End date"
-          name="end"
+          name="endAt"
           type="date"
           required
           ref={inputRef}
