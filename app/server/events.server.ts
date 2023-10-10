@@ -5,8 +5,28 @@ export async function listEvents(userId: string): Promise<Event[]> {
   if (!userId) return [];
 
   return prisma.event.findMany({
-    where: { userId },
+    where: {
+      userId,
+    },
     orderBy: { createdAt: "asc" },
+  });
+}
+
+export async function listApiEvents(
+  userId: string,
+  limit: number = 4,
+): Promise<Event[]> {
+  if (!userId) return [];
+
+  return prisma.event.findMany({
+    where: {
+      userId,
+      start: {
+        gte: new Date(),
+      },
+    },
+    take: limit,
+    orderBy: { start: "asc" },
   });
 }
 
