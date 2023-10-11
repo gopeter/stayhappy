@@ -13,3 +13,5 @@ playwright-report/
 
 !.env.sample
 !.env.*.sample
+
+.DS_Store
