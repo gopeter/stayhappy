@@ -85,14 +85,15 @@ function writeEvent(event, stack, isLast) {
   dateText.textOpacity = 0.5;
   dateText.font = Font.heavySystemFont(9);
 
-  stack.addSpacer(2);
+  stack.addSpacer(1);
 
   const contentText = stack.addText(event.content);
   contentText.textColor = Color.white();
   contentText.textOpacity = 1;
   contentText.font = Font.mediumSystemFont(12);
+  contentText.minimumScaleFactor = 0.85;
 
-  if (!isLast) stack.addSpacer(6);
+  if (!isLast) stack.addSpacer(8);
 }
 
 async function createWidget(data) {
@@ -106,45 +107,52 @@ async function createWidget(data) {
   w.setPadding(20, 14, 20, 14);
   w.spacing = 0;
 
+  if (!data.events) return w;
+
   const eventLength = data.events.length;
 
   let mainStack = w.addStack();
   mainStack.layoutHorizontally();
 
   let leftStack = mainStack.addStack();
-  leftStack.layoutVertically();
+  leftStack.layoutHorizontally();
+
+  let leftContentStack = leftStack.addStack();
+  leftContentStack.layoutVertically();
 
   for (let i = 0; i < 4; i++) {
     const event = data.events[i];
     const isLast = i === 3;
-    if (event) writeEvent(event, leftStack, isLast);
+    if (event) writeEvent(event, leftContentStack, isLast);
   }
 
-  mainStack.addSpacer();
+  leftStack.addSpacer();
 
   if (config.widgetFamily !== "small") {
+    mainStack.addSpacer(10);
+
     let rightStack = mainStack.addStack();
-    rightStack.layoutVertically();
+    rightStack.layoutHorizontally();
+
+    let rightContentStack = rightStack.addStack();
+    rightContentStack.layoutVertically();
 
     if (eventLength > 4) {
       for (let i = 4; i < 8; i++) {
         const event = data.events[i];
         const isLast = i === 7;
-        if (event) writeEvent(event, rightStack, isLast);
+        if (event) writeEvent(event, rightContentStack, isLast);
       }
     } else {
       // TODO: add dynamic memories or things you're grateful for
-      rightStack.setPadding(0, 20, 0, 0);
-      const gratefulText = rightStack.addText(
-        "Die Ruhe am Morgen, während du deinen frisch gebrühten Cappuchino genießt",
-      );
+      const gratefulText = rightContentStack.addText("Fetch from API");
 
       gratefulText.textColor = Color.white();
       gratefulText.font = Font.mediumSystemFont(14);
     }
-  }
 
-  w.addSpacer();
+    rightStack.addSpacer();
+  }
 
   return w;
 }
