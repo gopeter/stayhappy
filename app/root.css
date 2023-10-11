@@ -95,6 +95,12 @@
   }
 
   body.landingpage {
+    a {
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      color: transparent !important;
+    }
+
     p {
       @apply mb-4;
     }
