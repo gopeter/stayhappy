@@ -32,10 +32,10 @@ export const action = async ({ request }: DataFunctionArgs) => {
 
 export const meta: MetaFunction = () => [
   {
-    title: "Profile",
+    title: "Profile · StayHappy",
   },
   {
-    description: "Welcome to remix!",
+    description: "Your little helper to remember nice things",
   },
 ];
 

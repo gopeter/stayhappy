@@ -94,6 +94,12 @@
     @apply text-lg;
   }
 
+  p {
+    a {
+      text-decoration: underline;
+    }
+  }
+
   body.landingpage {
     a {
       text-decoration: none;

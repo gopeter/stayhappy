@@ -1,3 +1,14 @@
+import { MetaFunction } from "@vercel/remix";
+
+export const meta: MetaFunction = () => [
+  {
+    title: "StayHappy",
+  },
+  {
+    description: "Your little helper to remember nice things",
+  },
+];
+
 export default function Index() {
   return (
     <div className="text-white p-10 max-w-prose bg-clip-text text-transparent bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-pink-300 via-purple-300 to-indigo-400 min-h-screen landingpage">
@@ -42,12 +53,12 @@ export default function Index() {
         is <strong>always</strong> something to look forward to.
       </p>
       <p>
-        StayHappy is currently under active development. While you can use it in
-        the browser as any other web-app, it's main purpose is a widget on your
+        StayHappy is currently under active development. While you have to feed
+        it with data in the web-app, it's main purpose is a widget on your
         smartphone, which should always remind you of the beautiful sides of
         your life.
         <br />
-        It always shows you the next things to look forward to. And if there is
+        It shows you the next things to look forward to. And if there is
         currently nothing, then you will simply be shown the things that please
         you every day – or that have pleased you in the past.
         <br />
@@ -60,7 +71,15 @@ export default function Index() {
         >
           GitHub
         </a>
-        . Our tool will always be free (as long as we can host it for free) and
+        . For the moment, you have to read the instructions on GitHub to run it
+        on your own and to use the [Scriptable](https://scriptable.app/) widget.
+        While it's basically possible to open registrations on stayhappy.app for
+        all users too, I'm afraid of the data protection regulations at the
+        moment. Something I don't want to deal (or rather mess around) with. If
+        there's someone who wants to take over this part – you're warmly
+        welcome!
+        <br />
+        Our tool will always be free (as long as we can host it for free) and
         open source. You can also self-host it on your own servers.
       </p>
       <p>

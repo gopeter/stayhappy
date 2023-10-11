@@ -35,6 +35,9 @@ export async function createUser(
 
   const { email, name, password, passwordConfirmation } = parsedSchema.data;
 
+  // disable signup
+  return { data: null, errors: { closed: "Signup is closed" } };
+
   if (password !== passwordConfirmation) {
     return {
       data: null,
