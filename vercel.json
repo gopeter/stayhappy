@@ -18,7 +18,7 @@
         },
         {
           "key": "Content-Security-Policy",
-          "value": "default-src 'self'; script-src 'script-src-elem' 'sha256-zlqnbDt84zf1iSefLU/ImC54isoprH/MRiVZGskwexk=';img-src 'self' data:; font-src fonts.gstatic.com;style-src 'self' fonts.googleapis.com"
+          "value": "default-src 'self'; script-src 'self' 'unsafe-inline';img-src 'self' data:; font-src fonts.gstatic.com;style-src 'self' fonts.googleapis.com"
         },
         { "key": "X-XSS-Protection", "value": "1" }
       ]
