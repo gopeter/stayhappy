@@ -28,10 +28,10 @@ export const action = async ({ request }: DataFunctionArgs) => {
 
 export const meta: MetaFunction = () => [
   {
-    title: "Remix Prisma Starter",
+    title: "Sign up · StayHappy",
   },
   {
-    description: "Welcome to remix!",
+    description: "Your little helper to remember nice things",
   },
 ];
 
@@ -46,7 +46,19 @@ export default function SignUp() {
         action="/signup"
         className="p-10 w-full flex flex-col space-y-4"
       >
-        <CardTitle className="mb-8">Please sign up</CardTitle>
+        <CardTitle className="mb-8">Sign up is closed for the moment</CardTitle>
+
+        <p>
+          Once we have figured out how to deal with data protection regulations,
+          we may open the registration for everyone.
+        </p>
+
+        <p>
+          If you want to <a href="https://github.com/gopeter/stayhappy">help</a>
+          , you're warmly welcome!
+          <br />
+          <br />
+        </p>
 
         <FullInput
           label="Email"
@@ -85,7 +97,7 @@ export default function SignUp() {
           className="pb-4"
         />
 
-        <Button type="submit" className="mt-8" isLoading={isLoading}>
+        <Button type="submit" className="mt-8" isLoading={isLoading} disabled>
           Sign up
         </Button>
 
