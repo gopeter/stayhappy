@@ -45,10 +45,6 @@ async function getImage(image) {
     // download once
     let imageUrl;
     switch (image) {
-      case "coffee":
-        imageUrl =
-          "https://cdn.jsdelivr.net/gh/gopeter/stayhappy/scriptable/coffee.png";
-        break;
       default:
         console.log(`FP: Sorry, couldn't find ${image}.`);
     }
