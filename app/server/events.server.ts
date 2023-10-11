@@ -18,11 +18,13 @@ export async function listApiEvents(
 ): Promise<Event[]> {
   if (!userId) return [];
 
+  const startOfToday = new Date().setHours(0, 0, 0, 0);
+
   return prisma.event.findMany({
     where: {
       userId,
       startAt: {
-        gte: new Date(),
+        gte: new Date(startOfToday),
       },
     },
     take: limit,
