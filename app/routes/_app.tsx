@@ -1,11 +1,11 @@
 import { Outlet, useLoaderData } from "@remix-run/react";
 import { DataFunctionArgs, SerializeFrom } from "@vercel/remix";
-import LoggedInLayout from "~/components/layouts/LoggedInLayout";
-import LoggedOutLayout from "~/components/layouts/LoggedOutLayout";
+import AppLayout from "~/components/layouts/AppLayout";
+import PublicLayout from "~/components/layouts/PublicLayout";
 import Login from "~/modules/Login";
 import { userFromRequest } from "~/server/auth.server";
 
-export type AuthedRouteData = SerializeFrom<typeof loader>;
+export type AppRouteData = SerializeFrom<typeof loader>;
 
 export const loader = async ({ request }: DataFunctionArgs) => {
   const user = await userFromRequest(request);
@@ -14,18 +14,18 @@ export const loader = async ({ request }: DataFunctionArgs) => {
 };
 
 export default function AppPage() {
-  const { user } = useLoaderData<AuthedRouteData>();
+  const { user } = useLoaderData<AppRouteData>();
 
   if (!user)
     return (
-      <LoggedOutLayout>
+      <PublicLayout isLoggedIn={false}>
         <Login />
-      </LoggedOutLayout>
+      </PublicLayout>
     );
 
   return (
-    <LoggedInLayout user={user}>
+    <AppLayout user={user}>
       <Outlet />
-    </LoggedInLayout>
+    </AppLayout>
   );
 }

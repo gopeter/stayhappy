@@ -1,21 +1,12 @@
 import { Form, Link, useActionData } from "@remix-run/react";
 import type { DataFunctionArgs, MetaFunction } from "@vercel/remix";
-import { redirect } from "@vercel/remix";
 import { Button } from "~/components/ui/button";
 import { FullInput } from "~/components/ui/full-input";
 import { createUser } from "~/server/users.server";
 import { GenericDataError } from "~/server/utils/types";
 import useIsLoading from "~/hooks/useIsLoading";
-import { authenticate, userFromRequest } from "~/server/auth.server";
+import { authenticate } from "~/server/auth.server";
 import { Card, CardTitle } from "~/components/ui/card";
-
-export const loader = async ({ request }: DataFunctionArgs) => {
-  const user = await userFromRequest(request);
-
-  if (user) return redirect("/events");
-
-  return null;
-};
 
 export const action = async ({ request }: DataFunctionArgs) => {
   const form = await request.formData();

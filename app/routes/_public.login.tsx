@@ -12,6 +12,7 @@ import { login } from "~/server/users/auth.server";
 export const loader: LoaderFunction = async ({ request }) => {
   const user = await userFromRequest(request);
 
+  // no need to show the login page to an already logged-in user
   if (user) return redirect("/events");
 
   return null;
