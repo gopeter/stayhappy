@@ -2,15 +2,16 @@ import { Form, NavLink } from "@remix-run/react";
 import { ReactNode } from "react";
 import useFeatureFlags from "~/hooks/useFeatureFlags";
 import { UserProvider } from "~/hooks/useUser";
-import { AuthedRouteData } from "~/routes/_authed";
+import { AppRouteData } from "~/routes/_app";
 import { Button } from "../ui/button";
+import { Sidebar } from "../ui/sidebar";
 import ThemeChanger from "../ThemeChanger";
 
-function InnerLoggedInLayout({
+function InnerAppInLayout({
   user,
   children,
 }: {
-  user: NonNullable<AuthedRouteData["user"]>;
+  user: NonNullable<AppRouteData["user"]>;
   children: ReactNode;
 }) {
   const { hasFeatureFlag } = useFeatureFlags();
@@ -59,21 +60,23 @@ function InnerLoggedInLayout({
         </ul>
       </nav>
 
+      <Sidebar />
+
       <div className="contents">{children}</div>
     </div>
   );
 }
 
-export default function LoggedInLayout({
+export default function AppLayout({
   user,
   children,
 }: {
-  user: NonNullable<AuthedRouteData["user"]>;
+  user: NonNullable<AppRouteData["user"]>;
   children: ReactNode;
 }) {
   return (
     <UserProvider user={user}>
-      <InnerLoggedInLayout user={user}>{children}</InnerLoggedInLayout>
+      <InnerAppInLayout user={user}>{children}</InnerAppInLayout>
     </UserProvider>
   );
 }
