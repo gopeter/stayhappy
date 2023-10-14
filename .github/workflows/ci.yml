@@ -27,13 +27,6 @@ jobs:
         with:
           node-version: ${{ steps.versions.outputs.nodejs }}
 
-      - uses: npm/action-setup@v2
-        name: Install npm
-        id: npm-install
-        with:
-          version: 7
-          run_install: false
-
       - name: Get npm store directory
         id: npm-cache
         shell: bash
