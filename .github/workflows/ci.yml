@@ -27,36 +27,24 @@ jobs:
         with:
           node-version: ${{ steps.versions.outputs.nodejs }}
 
-      - uses: npm/action-setup@v2
-        name: Install npm
-        id: npm-install
-        with:
-          version: 7
-          run_install: false
-
-      - name: Get npm store directory
-        id: npm-cache
-        shell: bash
-        run: |
-          echo "STORE_PATH=$(npm store path)" >> $GITHUB_OUTPUT
-
-      - uses: actions/cache@v3
-        name: Setup npm cache
-        with:
-          path: ${{ steps.npm-cache.outputs.STORE_PATH }}
-          key: ${{ runner.os }}-npm-store-${{ hashFiles('**/npm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-npm-store-
-
-      - name: Cache playwright deps
+      - name: Cache node modules
+        id: cache-npm
         uses: actions/cache@v3
+        env:
+          cache-name: cache-node-modules
         with:
-          path: ~/.cache/ms-playwright
-          key: ${{ runner.os }}-build-playwright-${{ hashFiles('**/npm-lock.yaml') }}
+          # npm cache files are stored in `~/.npm` on Linux/macOS
+          path: ~/.npm
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
-            ${{ runner.os }}-build-playwright-
+            ${{ runner.os }}-build-${{ env.cache-name }}-
             ${{ runner.os }}-build-
             ${{ runner.os }}-
+
+      - if: ${{ steps.cache-npm.outputs.cache-hit != 'true' }}
+        name: List the state of node modules
+        continue-on-error: true
+        run: npm list
 
       - name: Install dependencies
         run: |

@@ -41,7 +41,7 @@ export default function Index() {
       <p>
         <RoughNotation
           type="highlight"
-          color="#efdef6"
+          color="var(--happy)"
           show={true}
           padding={2}
           animationDuration={1000}
@@ -56,7 +56,7 @@ export default function Index() {
       <p>
         <RoughNotation
           type="highlight"
-          color="#efdef6"
+          color="var(--happy)"
           show={true}
           padding={2}
           animationDelay={800}
@@ -71,7 +71,7 @@ export default function Index() {
       <p>
         <RoughNotation
           type="highlight"
-          color="#efdef6"
+          color="var(--happy)"
           show={true}
           padding={2}
           animationDelay={1800}
