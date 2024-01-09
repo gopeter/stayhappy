@@ -11,6 +11,7 @@ import EventsList from "~/modules/Events/EventsList";
 import { userIdFromRequest } from "~/server/auth.server";
 import {
   createEvent,
+  updateEvent,
   deleteAllEvents,
   deleteEvent,
   listEvents,
@@ -32,6 +33,14 @@ export const action: ActionFunction = async ({ request }) => {
   switch (form._action) {
     case "create":
       await createEvent(userId, {
+        content: form.content as string,
+        startAt: new Date(form.startAt as string).toISOString(),
+        endAt: new Date(form.endAt as string).toISOString(),
+      });
+      break;
+
+    case "update":
+      await updateEvent(form.eventId as string, {
         content: form.content as string,
         startAt: new Date(form.startAt as string).toISOString(),
         endAt: new Date(form.endAt as string).toISOString(),
@@ -62,14 +71,15 @@ export const meta: MetaFunction = () => [
 export default function EventsPage() {
   return (
     <>
-      <main className="max-w-xl w-full mx-auto flex-grow overflow-hidden">
+      <main className="order-2 md:order-1">
+        <h2 className="font-bold text-2xl mb-4">Events</h2>
         <EventsList />
+        <EventsDeleteAll />
       </main>
 
-      <div className="shrink-0 max-w-xl w-full mx-auto py-8">
-        <EventsDeleteAll />
-
-        <EventsForm />
+      <div className="order-1 md:order-2">
+        <h2 className="font-bold text-2xl mb-4">Add event</h2>
+        <EventsForm mode="new" />
       </div>
     </>
   );

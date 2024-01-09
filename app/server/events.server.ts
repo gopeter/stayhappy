@@ -8,7 +8,7 @@ export async function listEvents(userId: string): Promise<Event[]> {
     where: {
       userId,
     },
-    orderBy: { startAt: "asc" },
+    orderBy: [{ startAt: "desc" }, { createdAt: "asc" }],
   });
 }
 
@@ -46,5 +46,15 @@ export async function createEvent(
 ) {
   return prisma.event.create({
     data: { ...eventParams, user: { connect: { id: userId } } },
+  });
+}
+
+export async function updateEvent(
+  eventId: string,
+  eventParams: { content: string; startAt: string; endAt: string },
+) {
+  return prisma.event.update({
+    data: { ...eventParams },
+    where: { id: eventId },
   });
 }

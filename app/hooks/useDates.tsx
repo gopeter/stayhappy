@@ -3,7 +3,12 @@ import { formatDistance } from "date-fns";
 import { useMemo } from "react";
 
 function formatDateLocale(timestamp: string, locale: string) {
-  return new Date(timestamp).toLocaleString(locale);
+  return new Date(timestamp).toLocaleString(locale, {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
 }
 
 function formatRelativeTime(timestamp: string, rootTime: string) {

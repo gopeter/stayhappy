@@ -1,19 +1,19 @@
 import { createContext, ReactNode, useContext } from "react";
-import { AuthedRouteData } from "~/routes/_authed";
+import { AppRouteData } from "~/routes/_app";
 
-export const UserContext = createContext<AuthedRouteData["user"] | null>(null);
+export const UserContext = createContext<AppRouteData["user"] | null>(null);
 
 export function UserProvider({
   children,
   user,
 }: {
   children: ReactNode;
-  user: NonNullable<AuthedRouteData["user"]>;
+  user: NonNullable<AppRouteData["user"]>;
 }) {
   return <UserContext.Provider value={user}>{children}</UserContext.Provider>;
 }
 
-export default function useUser(): NonNullable<AuthedRouteData["user"]> {
+export default function useUser(): NonNullable<AppRouteData["user"]> {
   const userContext = useContext(UserContext);
 
   if (!userContext) {
