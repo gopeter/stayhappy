@@ -90,6 +90,7 @@ export default function Profile() {
           type="password"
           placeholder="**************"
           required
+          autoComplete="current-password"
           errors={actionData?.errors}
         />
 
@@ -98,6 +99,7 @@ export default function Profile() {
           name="newPassword"
           type="password"
           placeholder="**************"
+          autoComplete="new-password"
           errors={actionData?.errors}
         />
 
@@ -106,6 +108,7 @@ export default function Profile() {
           name="passwordConfirmation"
           type="password"
           placeholder="**************"
+          autoComplete="new-password"
           errors={actionData?.errors}
           className="pb-4"
         />

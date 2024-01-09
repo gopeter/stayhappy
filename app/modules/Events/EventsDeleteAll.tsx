@@ -6,7 +6,7 @@ export default function EventsDeleteAll() {
   const isLoading = useIsLoading();
 
   return (
-    <Form method="post" className="flex flex-col items-center justify-center">
+    <Form method="post" className="flex flex-col items-end mt-10">
       <Button
         variant="destructive"
         type="submit"

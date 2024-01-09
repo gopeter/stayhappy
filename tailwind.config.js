@@ -14,6 +14,9 @@ module.exports = {
       },
     },
     extend: {
+      gridTemplateColumns: {
+        layout: "1fr 1fr",
+      },
       gridTemplateRows: {
         landingpage: "auto 1fr",
       },
