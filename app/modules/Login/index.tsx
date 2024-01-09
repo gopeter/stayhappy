@@ -3,7 +3,7 @@ import { Button } from "~/components/ui/button";
 import { Card, CardTitle } from "~/components/ui/card";
 import { FullInput } from "~/components/ui/full-input";
 import useIsLoading from "~/hooks/useIsLoading";
-import { LoginActionType } from "~/routes/_unauthed.login";
+import { LoginActionType } from "~/routes/_public.login";
 
 export default function Login() {
   const actionData = useActionData<LoginActionType>();
