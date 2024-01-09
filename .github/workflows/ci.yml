@@ -50,6 +50,7 @@ jobs:
         run: |
           npm i
           npx playwright install
+          cd scriptable && npm i
 
       - name: Lint
         run: |
