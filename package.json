@@ -13,6 +13,8 @@
     "postinstall": "remix setup node",
     "lint": "eslint \"**/*.{js,jsx,ts,tsx}\" --cache",
     "prepare": "husky install",
+    "prisma:generate": "prisma generate",
+    "prisma:dbpush": "prisma db push",
     "start": "remix-serve build/index.js",
     "test": "dotenv -e .env.test -- bash -c 'prisma db push -- --force && npm run build && playwright test'",
     "test:ci": "prisma db push && npm run build && playwright test",
