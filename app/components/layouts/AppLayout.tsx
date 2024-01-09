@@ -1,17 +1,11 @@
 import { ReactNode } from "react";
-import useFeatureFlags from "~/hooks/useFeatureFlags";
 import { UserProvider } from "~/hooks/useUser";
 import { AppRouteData } from "~/routes/_app";
 import { Menu } from "~/components/ui/menu";
+// import useFeatureFlags from "~/hooks/useFeatureFlags";
 
-function InnerAppInLayout({
-  user,
-  children,
-}: {
-  user: NonNullable<AppRouteData["user"]>;
-  children: ReactNode;
-}) {
-  const { hasFeatureFlag } = useFeatureFlags();
+function InnerAppInLayout({ children }: { children: ReactNode }) {
+  // const { hasFeatureFlag } = useFeatureFlags();
 
   return (
     <div className="wrapper pb-10">
@@ -31,7 +25,7 @@ export default function AppLayout({
 }) {
   return (
     <UserProvider user={user}>
-      <InnerAppInLayout user={user}>{children}</InnerAppInLayout>
+      <InnerAppInLayout>{children}</InnerAppInLayout>
     </UserProvider>
   );
 }
