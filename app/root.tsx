@@ -1,22 +1,21 @@
+import { Analytics } from "@vercel/analytics/react";
+import acceptLanguage from "accept-language-parser";
+import React, { useEffect } from "react";
+import type { LoaderFunctionArgs } from "react-router";
 import {
+  isRouteErrorResponse,
   Links,
   Meta,
   Outlet,
   Scripts,
   ScrollRestoration,
-  isRouteErrorResponse,
   useLoaderData,
   useMatches,
   useRouteError,
 } from "react-router";
-
-import { Analytics } from "@vercel/analytics/react";
-import acceptLanguage from "accept-language-parser";
-import type { LoaderFunctionArgs } from "react-router";
-import React, { useEffect } from "react";
+import { CLIENT_ENV } from "./env";
 import { ToastsRenderer } from "./hooks/useToast";
 import styles from "./root.css?url";
-import { CLIENT_ENV } from "./env";
 import { getCurrentTheme } from "./server/theme.server";
 import { cn } from "./utils";
 

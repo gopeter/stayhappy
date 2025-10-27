@@ -1,8 +1,8 @@
 import get from "lodash/get";
-import { ComponentPropsWithRef, forwardRef, Ref, useId } from "react";
+import { type ComponentPropsWithRef, forwardRef, type Ref, useId } from "react";
+import { cn } from "~/utils";
 import { Input } from "./input";
 import { Label } from "./label";
-import { cn } from "~/utils";
 
 export interface FullInputProps extends ComponentPropsWithRef<"input"> {
   label: string;

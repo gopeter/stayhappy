@@ -8,7 +8,6 @@ api/*
 .env
 .env.*
 test-results/
-.eslintcache
 
 !.env.sample
 !.env.*.sample

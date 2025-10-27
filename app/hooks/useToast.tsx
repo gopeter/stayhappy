@@ -1,5 +1,5 @@
 import uniqueId from "lodash/uniqueId";
-import { ReactNode } from "react";
+import type { ReactNode } from "react";
 import { create } from "zustand";
 
 type ToastType = "info" | "success" | "warning" | "error";

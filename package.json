@@ -42,6 +42,7 @@
     "zustand": "^4.4.1"
   },
   "devDependencies": {
+    "@biomejs/biome": "2.3.1",
     "@react-router/dev": "^7.0.0",
     "@types/accept-language-parser": "^1.5.4",
     "@types/jsonwebtoken": "^9.0.3",

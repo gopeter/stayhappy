@@ -1,5 +1,5 @@
-import type { MetaFunction } from "react-router";
 import { RoughNotation } from "react-rough-notation";
+import type { MetaFunction } from "react-router";
 
 export const meta: MetaFunction = () => [
   {
