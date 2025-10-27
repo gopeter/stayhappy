@@ -1,4 +1,4 @@
-import { MetaFunction } from "@vercel/remix";
+import type { MetaFunction } from "react-router";
 import { RoughNotation } from "react-rough-notation";
 
 export const meta: MetaFunction = () => [

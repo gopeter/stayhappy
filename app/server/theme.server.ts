@@ -1,4 +1,4 @@
-import { createCookie, redirect } from "@vercel/remix";
+import { createCookie, redirect } from "react-router";
 
 export type ThemeType = "dark" | "light" | "system";
 

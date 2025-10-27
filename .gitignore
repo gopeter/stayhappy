@@ -8,10 +8,11 @@ api/*
 .env
 .env.*
 test-results/
-playwright-report/
 .eslintcache
 
 !.env.sample
 !.env.*.sample
 
 .DS_Store
+
+.react-router
