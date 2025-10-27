@@ -1,22 +1,21 @@
+import { Analytics } from "@vercel/analytics/react";
+import acceptLanguage from "accept-language-parser";
+import React, { useEffect } from "react";
+import type { LoaderFunctionArgs } from "react-router";
 import {
+  isRouteErrorResponse,
   Links,
-  LiveReload,
   Meta,
   Outlet,
   Scripts,
   ScrollRestoration,
-  isRouteErrorResponse,
   useLoaderData,
   useMatches,
   useRouteError,
-} from "@remix-run/react";
-import { DataFunctionArgs } from "@vercel/remix";
-import { Analytics } from "@vercel/analytics/react";
-import acceptLanguage from "accept-language-parser";
-import React, { useEffect } from "react";
-import { ToastsRenderer } from "./hooks/useToast";
-import styles from "./root.css";
+} from "react-router";
 import { CLIENT_ENV } from "./env";
+import { ToastsRenderer } from "./hooks/useToast";
+import styles from "./root.css?url";
 import { getCurrentTheme } from "./server/theme.server";
 import { cn } from "./utils";
 
@@ -52,7 +51,7 @@ function localeFromRequest(request: Request): string {
   return `${languages[0].code}-${languages[0].region.toLowerCase()}`;
 }
 
-export const loader = async ({ request }: DataFunctionArgs) => {
+export const loader = async ({ request }: LoaderFunctionArgs) => {
   return {
     locale: localeFromRequest(request),
     ENV: CLIENT_ENV,
@@ -162,7 +161,6 @@ function Document({
           {children}
           <ScrollRestoration />
           <Scripts />
-          <LiveReload />
         </body>
       </html>
     </React.StrictMode>

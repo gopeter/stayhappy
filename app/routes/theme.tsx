@@ -1,4 +1,8 @@
-import { ActionFunction, LoaderFunction, redirect } from "@vercel/remix";
+import {
+  type ActionFunction,
+  type LoaderFunction,
+  redirect,
+} from "react-router";
 import { setTheme } from "~/server/theme.server";
 
 export const action: ActionFunction = async ({ request }) => setTheme(request);

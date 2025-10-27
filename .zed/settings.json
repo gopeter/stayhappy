@@ -1,0 +1,12 @@
+{
+  "tab_size": 2,
+  "hard_tabs": false,
+  "remove_trailing_whitespace_on_save": false,
+  "preferred_line_length": 160,
+  "code_actions_on_format": {
+    "source.fixAll.biome": true,
+    "source.organizeImports.biome": true
+  },
+  "format_on_save": "on"
+  }
+}
