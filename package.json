@@ -3,7 +3,7 @@
   "private": false,
   "description": "Website for StayHappy",
   "license": "MIT",
-  "sideEffects": false,
+  "type": "module",
   "scripts": {
     "build": "react-router build",
     "deploy": "npm run ts-run tasks/validateConfig.ts && npm run build",
