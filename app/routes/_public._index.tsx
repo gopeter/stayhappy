@@ -111,6 +111,11 @@ export default function Index() {
         themselves and who could draw some good from this approach. To say it
         short and clear: this thing has no medical or therapeutic background!
       </p>
+      <h3>Contact &amp; Support</h3>
+      <p>
+        Got questions about the app or need some help? We'd love to hear from
+        you! Just drop us an email at info@stayhappy.app.
+      </p>
     </div>
   );
 }
