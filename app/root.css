@@ -296,13 +296,10 @@
     strong {
       @apply font-bold;
     }
-
-    h3 {
-      @apply font-crimson-pro text-2xl font-normal mb-2;
-    }
   }
 
-  .landingpage {
+  .landingpage,
+  .privacy {
     a {
       text-decoration: underline;
     }
