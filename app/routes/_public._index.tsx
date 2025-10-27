@@ -46,7 +46,7 @@ export default function Index() {
           padding={2}
           animationDuration={1000}
         >
-          <strong>Gratefulness.</strong>
+          <strong>Ressources.</strong>
         </RoughNotation>{" "}
         All the things, no matter small or big, you're grateful for each day.
         Your child's cold feet when they crawl under your covers in the morning.
@@ -77,7 +77,7 @@ export default function Index() {
           animationDelay={1800}
           animationDuration={1000}
         >
-          <strong>Events.</strong>
+          <strong>Moments.</strong>
         </RoughNotation>{" "}
         The next BBQ at your best friend's house. The upcoming ski vacation. The
         PlayStation game you've been waiting for for months.
@@ -89,41 +89,21 @@ export default function Index() {
       </p>
       <h3>When will it be ready?</h3>
       <p>
-        StayHappy is currently under active development. While you have to feed
-        it with data in the web-app, it's main purpose is a widget on your
-        smartphone, which should always remind you of the beautiful sides of
-        your life.
+        StayHappy is an iOS app and currently{" "}
+        <a href="https://github.com/gopeter/stayhappy-app">
+          under active development
+        </a>
+        . While you have to feed it with data in the app, it's main purpose is a
+        widget on your smartphone, which should always remind you of the
+        beautiful sides of your life.
         <br />
         It shows you the next things to look forward to. And if there is
         currently nothing, then you will simply be shown the things that please
         you every day – or that have pleased you in the past.
       </p>
-      <p>
-        You can follow the development on{" "}
-        <a
-          href="https://github.com/gopeter/stayhappy"
-          target="_blank"
-          rel="noreferrer"
-        >
-          GitHub
-        </a>
-        .
-      </p>
-      <p>
-        For the moment, you have to read the instructions on GitHub to run it on
-        your own and to use the{" "}
-        <a href="https://scriptable.app/" target="_blank" rel="noreferrer">
-          Scriptable
-        </a>{" "}
-        widget. While it's basically possible to open registrations on
-        stayhappy.app for all users too, I'm afraid of the data protection
-        regulations at the moment. Something I don't want to deal (or rather
-        mess around) with. If there's someone who wants to take over this part –
-        you're warmly welcome!
-      </p>
       <h3>What's about the pricing?</h3>
       <p>
-        Our tool will always be free (as long as we can host it for free) and
+        Our app will always be free (as long as we can host it for free) and
         open source. You can also self-host it on your own servers.
       </p>
       <p>

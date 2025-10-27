@@ -32,7 +32,7 @@
     "postcss": "^8.4.31",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-rough-notation": "^1.0.5",
+    "react-rough-notation": "^1.0.8",
     "react-router": "^7.9.4",
     "react-use": "^17.4.0",
     "tailwind-merge": "^1.14.0",
