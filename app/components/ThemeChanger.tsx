@@ -8,10 +8,12 @@ import {
   DropdownMenuContent,
   DropdownMenuTrigger,
 } from "~/components/ui/dropdown-menu";
+import { useTranslation } from "~/hooks/useTranslation";
 import { useRootLoaderData } from "~/root";
 
 export default function ThemeChanger() {
   const { currentTheme } = useRootLoaderData();
+  const { t } = useTranslation();
 
   return (
     <DropdownMenu>
@@ -19,19 +21,19 @@ export default function ThemeChanger() {
         <Button variant="outline" size="sm" className="px-2">
           <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
           <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-          <span className="sr-only">Toggle theme</span>
+          <span className="sr-only">{t.theme.toggle}</span>
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
         <Form action="/theme" method="post">
           <button className="contents" type="submit" name="theme" value="light">
             <DropdownMenuCheckboxItem checked={currentTheme === "light"}>
-              Light
+              {t.theme.light}
             </DropdownMenuCheckboxItem>
           </button>
           <button className="contents" type="submit" name="theme" value="dark">
             <DropdownMenuCheckboxItem checked={currentTheme === "dark"}>
-              Dark
+              {t.theme.dark}
             </DropdownMenuCheckboxItem>
           </button>
           <button
@@ -41,7 +43,7 @@ export default function ThemeChanger() {
             value="system"
           >
             <DropdownMenuCheckboxItem checked={currentTheme === "system"}>
-              System
+              {t.theme.system}
             </DropdownMenuCheckboxItem>
           </button>
         </Form>

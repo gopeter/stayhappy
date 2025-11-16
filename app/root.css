@@ -328,6 +328,12 @@
     }
   }
 
+  .landingpage {
+    p {
+      @apply break-inside-avoid-column;
+    }
+  }
+
   .landingpage,
   .privacy {
     a {
