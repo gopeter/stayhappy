@@ -57,6 +57,7 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
     ENV: CLIENT_ENV,
     rootTime: new Date().toISOString(),
     currentTheme: await getCurrentTheme(request),
+    isSafari: request.headers.get("user-agent")?.includes("Safari/") ?? false,
   };
 };
 
@@ -85,14 +86,14 @@ const applySystemThemeString = `
 `;
 
 export default function App() {
-  const { ENV, currentTheme } = useLoaderData<RootLoaderType>();
+  const { ENV, currentTheme, isSafari } = useLoaderData<RootLoaderType>();
 
   useEffect(() => {
     if (currentTheme === "system") applySystemTheme();
   }, [currentTheme]);
 
   return (
-    <Document className={currentTheme}>
+    <Document className={currentTheme} isSafari={isSafari}>
       <script
         // Set the variables for our `envVars` modules
         dangerouslySetInnerHTML={{
@@ -137,15 +138,21 @@ function Document({
   children,
   title,
   className,
+  isSafari,
 }: {
   children: React.ReactNode;
   title?: string;
   className?: string;
+  isSafari: boolean;
 }) {
   return (
     <React.StrictMode>
       <html
-        className={cn(className, "bg-background text-foreground")}
+        className={cn(
+          className,
+          "bg-background text-foreground",
+          isSafari && "is-safari",
+        )}
         lang="en"
       >
         <head>

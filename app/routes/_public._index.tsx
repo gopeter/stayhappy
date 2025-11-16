@@ -30,7 +30,44 @@ export default function Index() {
         favourite band. Snow. The birthday of a good friend. A few days off when
         the kids are with grandma and grandpa. Eggnog at Christmas.
       </p>
-      <p>You get the idea. Your brain forgets all the good stuff, though.</p>
+      <p>
+        You get the idea. Your brain forgets all the good stuff, though. But
+        StayHappy, a little selfcare app, may help you remember the beautiful
+        things in life!
+      </p>
+      <p>
+        <a
+          href="https://apps.apple.com/de/app/stayhappy/id6502288134"
+          target="_blank"
+          rel="noopener"
+        >
+          <img
+            src="/images//Download_on_the_App_Store_Badge_EN_RGB_wht_092917.svg"
+            alt="App Store Download Button"
+            className="dark"
+          />
+          <img
+            src="/images/Download_on_the_App_Store_Badge_EN_RGB_blk_092917.svg"
+            alt="App Store Download Button"
+            className="light"
+          />
+        </a>
+      </p>
+
+      <p>
+        StayHappy is currently availabile for iOS only. It's open source, you
+        can follow the development on{" "}
+        <a
+          href="https://github.com/gopeter/stayhappy-app"
+          target="_blank"
+          rel="noopener"
+        >
+          GitHub
+        </a>
+        . Since I am not an Android developer, any help would be very
+        appreciated. StayHappy will always remain free and open source.
+      </p>
+
       <h3>How does it work</h3>
       <p>
         So let yourself remember those good things. It doesn't matter if it's
@@ -87,20 +124,6 @@ export default function Index() {
         achieved in your life. And what's coming next, because, you know, there
         is always something to look forward to.
       </p>
-      <h3>When will it be ready?</h3>
-      <p>
-        StayHappy is an iOS app and currently{" "}
-        <a href="https://github.com/gopeter/stayhappy-app">
-          under active development
-        </a>
-        . While you have to feed it with data in the app, it's main purpose is a
-        widget on your smartphone, which should always remind you of the
-        beautiful sides of your life.
-        <br />
-        It shows you the next things to look forward to. And if there is
-        currently nothing, then you will simply be shown the things that please
-        you every day – or that have pleased you in the past.
-      </p>
       <h3>What's about the pricing?</h3>
       <p>
         Our app will always be free (as long as we can host it for free) and
@@ -109,7 +132,7 @@ export default function Index() {
       <p>
         Please note that StayHappy is built by a few people who are affected
         themselves and who could draw some good from this approach. To say it
-        short and clear: this thing has no medical or therapeutic background!
+        short and clear: this app has no medical or therapeutic background!
       </p>
       <h3>Contact &amp; Support</h3>
       <p>
