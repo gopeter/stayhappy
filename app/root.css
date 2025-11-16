@@ -276,6 +276,36 @@
 
   html {
     font-size: 14px;
+
+    &.is-safari {
+      h1,
+      h2,
+      h3 {
+        &.text-transparent {
+          color: #dfb1f6;
+        }
+      }
+    }
+
+    &.light {
+      img.dark {
+        display: none;
+      }
+
+      img.light {
+        display: inline;
+      }
+    }
+
+    &.dark {
+      img.light {
+        display: none;
+      }
+
+      img.dark {
+        display: inline;
+      }
+    }
   }
 
   body {
@@ -295,6 +325,12 @@
   .privacy {
     strong {
       @apply font-bold;
+    }
+  }
+
+  .landingpage {
+    p {
+      @apply break-inside-avoid-column;
     }
   }
 

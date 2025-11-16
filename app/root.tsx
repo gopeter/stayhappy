@@ -1,5 +1,4 @@
 import { Analytics } from "@vercel/analytics/react";
-import acceptLanguage from "accept-language-parser";
 import React, { useEffect } from "react";
 import type { LoaderFunctionArgs } from "react-router";
 import {
@@ -35,28 +34,12 @@ export function links() {
   ];
 }
 
-// Load the locale from the Accept-Language header to later
-// inject it on the app's context
-function localeFromRequest(request: Request): string {
-  const languages = acceptLanguage.parse(
-    request.headers.get("Accept-Language") as string,
-  );
-
-  // If somehow the header is empty, return a default locale
-  if (languages?.length < 1) return "en-us";
-
-  // If there is no region for this locale, just return the country code
-  if (!languages[0].region) return languages[0].code;
-
-  return `${languages[0].code}-${languages[0].region.toLowerCase()}`;
-}
-
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   return {
-    locale: localeFromRequest(request),
     ENV: CLIENT_ENV,
     rootTime: new Date().toISOString(),
     currentTheme: await getCurrentTheme(request),
+    isSafari: request.headers.get("user-agent")?.includes("Safari/") ?? false,
   };
 };
 
@@ -85,14 +68,26 @@ const applySystemThemeString = `
 `;
 
 export default function App() {
-  const { ENV, currentTheme } = useLoaderData<RootLoaderType>();
+  const { ENV, currentTheme, isSafari } = useLoaderData<RootLoaderType>();
+  const matches = useMatches();
+
+  // Get language from the public layout route
+  const publicLayoutMatch = matches.find(
+    (match) => match.id === "routes/_public",
+  );
+  const currentLanguage =
+    (publicLayoutMatch?.data as { currentLang?: string })?.currentLang || "en";
 
   useEffect(() => {
     if (currentTheme === "system") applySystemTheme();
   }, [currentTheme]);
 
   return (
-    <Document className={currentTheme}>
+    <Document
+      className={currentTheme}
+      isSafari={isSafari}
+      lang={currentLanguage}
+    >
       <script
         // Set the variables for our `envVars` modules
         dangerouslySetInnerHTML={{
@@ -115,7 +110,7 @@ export function ErrorBoundary() {
 
   if (isRouteErrorResponse(error)) {
     return (
-      <Document>
+      <Document lang="en" isSafari={false}>
         <h1>Oops</h1>
         <p>Status: {error.status}</p>
         <p>{error.data.message}</p>
@@ -126,7 +121,7 @@ export function ErrorBoundary() {
   console.error(error);
 
   return (
-    <Document>
+    <Document lang="en" isSafari={false}>
       <h1>Uh oh ...</h1>
       <p>Something went wrong.</p>
     </Document>
@@ -137,16 +132,24 @@ function Document({
   children,
   title,
   className,
+  isSafari,
+  lang = "en",
 }: {
   children: React.ReactNode;
   title?: string;
   className?: string;
+  isSafari: boolean;
+  lang?: string;
 }) {
   return (
     <React.StrictMode>
       <html
-        className={cn(className, "bg-background text-foreground")}
-        lang="en"
+        className={cn(
+          className,
+          "bg-background text-foreground",
+          isSafari && "is-safari",
+        )}
+        lang={lang}
       >
         <head>
           <meta charSet="utf-8" />
